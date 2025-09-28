@@ -12,7 +12,7 @@ interface IToDoForm {
 
 export default function EditTask() {
 
-    const { register, handleSubmit, setValue } = useForm<IToDoForm>()
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IToDoForm>()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const data = useAppSelector((state)=> state.toDo)

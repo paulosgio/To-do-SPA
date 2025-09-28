@@ -15,7 +15,7 @@ function Home() {
   
   const dispatch = useAppDispatch()
   const data = useAppSelector((state)=> state.toDo)
-  const { register, handleSubmit } = useForm<IToDoForm>()
+  const { register, handleSubmit, formState: { errors } } = useForm<IToDoForm>()
   const categories: string[] = ["Casa", "Trabalho", "Lazer", "Estudo", "Atividade física"]
   const [categoryActive, setCategoryActive] = useState<string>("")
   const filteredData = categoryActive ? data.filter(param => param.category === categoryActive) : data
