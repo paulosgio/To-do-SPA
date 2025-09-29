@@ -3,16 +3,11 @@ import { editTask } from "../features/toDo/toDoSlice"
 import { useAppDispatch, useAppSelector } from "../hook"
 import { useNavigate, useParams } from "react-router-dom"
 import { useEffect } from "react"
-
-interface IToDoForm {
-  task: string,
-  category: "Casa" | "Trabalho" | "Lazer" | "Estudo" | "Atividade física"
-  id: string
-}
+import type { IToDo } from "../interfaces/ToDoInterface"
 
 export default function EditTask() {
 
-    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IToDoForm>()
+    const { register, handleSubmit, formState: { errors }, setValue } = useForm<IToDo>()
     const dispatch = useAppDispatch()
     const navigate = useNavigate()
     const data = useAppSelector((state)=> state.toDo)

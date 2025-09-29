@@ -4,18 +4,13 @@ import { addTask, removeTask } from "../features/toDo/toDoSlice"
 import { useForm } from 'react-hook-form'
 import { useState } from 'react'
 import { useNavigate } from "react-router-dom"
-
-interface IToDoForm {
-  task: string,
-  category: "Casa" | "Trabalho" | "Lazer" | "Estudo" | "Atividade física"
-  id: string
-}
+import type { IToDo } from "../interfaces/ToDoInterface"
 
 function Home() {
   
   const dispatch = useAppDispatch()
   const data = useAppSelector((state)=> state.toDo)
-  const { register, handleSubmit, formState: { errors } } = useForm<IToDoForm>()
+  const { register, handleSubmit, formState: { errors } } = useForm<IToDo>()
   const categories: string[] = ["Casa", "Trabalho", "Lazer", "Estudo", "Atividade física"]
   const [categoryActive, setCategoryActive] = useState<string>("")
   const filteredData = categoryActive ? data.filter(param => param.category === categoryActive) : data

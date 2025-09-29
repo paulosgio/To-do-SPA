@@ -1,19 +1,14 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit"
 import { v4 as uuidv4 } from 'uuid';
+import type { IToDo } from "../../interfaces/ToDoInterface";
 
-interface ITodoState {
-    task: string,
-    category: "Casa" | "Trabalho" | "Lazer" | "Estudo" | "Atividade física"
-    id: string
-}
-
-const initialState: ITodoState[] = JSON.parse(localStorage.getItem("tasks") || "[]")
+const initialState: IToDo[] = JSON.parse(localStorage.getItem("tasks") || "[]")
 
 const toDoSlice = createSlice({
     name: "toDo",
     initialState,
     reducers: {
-        addTask: (state, action: PayloadAction<ITodoState>)=> {
+        addTask: (state, action: PayloadAction<IToDo>)=> {
             const taskWithId = {...action.payload, id: uuidv4()}
             state.push(taskWithId)
             localStorage.setItem("tasks", JSON.stringify(state))
@@ -25,7 +20,7 @@ const toDoSlice = createSlice({
                 localStorage.setItem("tasks", JSON.stringify(state))
             }
         },
-        editTask: (state, action: PayloadAction<ITodoState>)=> {
+        editTask: (state, action: PayloadAction<IToDo>)=> {
             const index = state.findIndex(param => param.id === action.payload.id)
             if (index !== -1) {
                 state[index] = { ...state[index], ...action.payload }
