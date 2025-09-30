@@ -15,7 +15,7 @@ export default function EditTask() {
 
     const onSubmit = handleSubmit((data)=> {
         dispatch(editTask(data))
-        navigate("/")
+        navigate("/home")
       })
 
     const task = data.find(param => param.id === id)
